@@ -5,6 +5,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import cl.customer.customerapi.exeption.error.CustomExceptionError;
 import cl.customer.customerapi.service.implementacion.CustomersImpl;
 
 import cl.customer.customerapi.model.entities.Customers;
@@ -59,7 +60,7 @@ class ICustomersServiceTest {
     }
 
     @Test
-    void saveCustomerTest() {
+    void saveCustomerTest() throws CustomExceptionError {
 
         Date date = new Date();
 

@@ -1,6 +1,7 @@
 package cl.customer.customerapi.controller;
 
 import cl.customer.customerapi.config.SwaggerConfig;
+import cl.customer.customerapi.exeption.error.CustomExceptionError;
 import cl.customer.customerapi.model.entities.Customers;
 import cl.customer.customerapi.service.servicios.ICustomersService;
 import io.swagger.annotations.Api;
@@ -59,7 +60,7 @@ public class CustomerController {
 
     @ApiOperation(value = "Guarda nuevos Clientes", response = CustomerController.class)
     @PostMapping("/saveCustomer")
-    public Customers saveCustomer (@RequestBody Customers customers) {
+    public Customers saveCustomer (@RequestBody Customers customers) throws CustomExceptionError {
 
            return iCustomersService.saveCustomer(customers);
 

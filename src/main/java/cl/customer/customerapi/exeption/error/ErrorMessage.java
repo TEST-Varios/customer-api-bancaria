@@ -1,4 +1,4 @@
-package cl.customer.customerapi.exeptions.handlers;
+package cl.customer.customerapi.exeption.error;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -15,10 +15,13 @@ public class ErrorMessage {
     @JsonProperty("message")
     public String message;
 
-    @JsonProperty("uri")
-    public String uriRequested;
-
     @JsonProperty("errors")
     public List<String> errors;
 
+    public ErrorMessage(HttpStatus httpStatus, String message) {
+    }
+
+    public ErrorMessage() {
+
+    }
 }
