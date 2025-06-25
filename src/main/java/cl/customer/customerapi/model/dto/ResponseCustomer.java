@@ -1,33 +1,23 @@
 package cl.customer.customerapi.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ResponseCustomer {
 
-    @JsonProperty("ID_Client")
-    public UUID uuid = UUID.randomUUID();
+    private String name;
 
-    @Temporal(TemporalType.DATE)
-    @JsonProperty("created")
-    public Date created;
+    private String email;
 
-    @Temporal(TemporalType.DATE)
-    @JsonProperty("modified")
-    public Date modified;
+    private String password;
 
-    @Temporal(TemporalType.DATE)
-    @JsonProperty("last_login")
-    public Date lastLogin;
+    private String token;
 
-    public String token;
+    private boolean isActive;
 
-    @JsonProperty("is_active")
-    public Boolean isActive;
+    private List<PhoneDto> phones;
 
 }

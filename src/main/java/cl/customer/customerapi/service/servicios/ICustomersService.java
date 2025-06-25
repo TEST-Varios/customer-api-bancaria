@@ -1,14 +1,15 @@
 package cl.customer.customerapi.service.servicios;
 
-import cl.customer.customerapi.exeption.error.CustomExceptionError;
-import cl.customer.customerapi.model.entities.Customers;
 
 import java.util.List;
 
+import cl.customer.customerapi.model.dto.ResponseCustomer;
+import cl.customer.customerapi.model.dto.RequestCustomer;
+
 public interface ICustomersService {
 
-    List<Customers> getAllCustomers();
-    Customers getByIdCustomer(Long id);
-    Customers saveCustomer(Customers customer) throws CustomExceptionError;
+    List<ResponseCustomer> getAllCustomers();
+    ResponseCustomer getByIdCustomer(Long id);
+    void saveCustomer(RequestCustomer customer);
     void deleteCustomer(Long id);
 }

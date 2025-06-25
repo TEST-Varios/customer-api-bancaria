@@ -1,9 +1,11 @@
 package cl.customer.customerapi.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import javax.persistence.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.*;
 
 @Data
 @Entity
@@ -15,18 +17,18 @@ public class CustomersPhone {
     @Column(name = "id_phones")
     private Long idPhones;
 
-    @JsonProperty("number")
-    private String number;
+    @Column(name = "number")
+    private Long number;
 
-    @JsonProperty("city_code")
-    private String cityCode;
+    @Column(name = "city_code")
+    private Integer cityCode;
 
-    @JsonProperty("country_code")
+    @Column(name = "country_code")
     private String countryCode;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customers customers;
 
 }
