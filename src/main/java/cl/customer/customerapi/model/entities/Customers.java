@@ -1,7 +1,8 @@
 package cl.customer.customerapi.model.entities;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
+import cl.customer.customerapi.model.enums.Roles;
+import cl.customer.customerapi.model.enums.Status;
 import lombok.*;
 import jakarta.persistence.*;
 import java.util.Date;
@@ -23,14 +24,20 @@ public class Customers {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
     private String token;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Roles role;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "is_active")
-    private boolean isActive;
+    private Status status;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
@@ -53,7 +60,10 @@ public class Customers {
 
     @PrePersist
     public void preSaveCreate() {
-        isActive = true;
+        if (this.status == null) {
+            this.status = Status.ACTIVO;
+        }
+
         created = new Date();
         modified = new Date();
         lastLogin = new Date();

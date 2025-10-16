@@ -1,12 +1,9 @@
 package cl.customer.customerapi.controller;
 
 
-import cl.customer.customerapi.exeption.error.CustomExceptionError;
 import cl.customer.customerapi.model.dto.RequestCustomer;
 import cl.customer.customerapi.model.dto.ResponseCustomer;
-import cl.customer.customerapi.model.entities.Customers;
 import cl.customer.customerapi.service.implementacion.CustomersImpl;
-import cl.customer.customerapi.service.servicios.ICustomersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -60,13 +57,7 @@ public class CustomerController {
     @PostMapping("/saveCustomer")
     public ResponseEntity<ResponseCustomer> saveCustomer (@RequestBody RequestCustomer customers) {
         customerService.saveCustomer(customers);
-        ResponseCustomer responseCustomer = new ResponseCustomer( 
-            customers.getName(),
-            customers.getEmail(),
-            customers.getPassword(),
-            null,
-            true,
-            customers.getPhone());
+        ResponseCustomer responseCustomer = new ResponseCustomer();
            return new ResponseEntity<>(responseCustomer, HttpStatus.CREATED);
     }
 
